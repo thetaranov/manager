@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
         initial={{ opacity: 0 }}
         animate={isReady ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 3.0, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-neutral-500 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]"
+        className="absolute bottom-10 left-0 right-0 mx-auto w-fit animate-bounce text-neutral-500 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]"
       >
         <ChevronDown className="w-8 h-8" />
       </motion.div>
