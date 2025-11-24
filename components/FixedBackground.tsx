@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useTime } from 'framer-motion';
 import { useMouse } from '../context/MouseContext';
 
@@ -14,6 +14,14 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
   const { mouseX, mouseY } = useMouse();
   const time = useTime();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -29,8 +37,11 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
   const mouseRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig); 
 
   // 3. Time Interaction (Drift)
-  const driftRotateX = useTransform(time, (t) => Math.sin(t / 3000) * 3); 
-  const driftRotateY = useTransform(time, (t) => Math.cos(t / 4000) * 3); 
+  // Significantly increased drift for mobile since there is no mouse interaction
+  const driftAmplitude = isMobile ? 12 : 3; 
+  
+  const driftRotateX = useTransform(time, (t) => Math.sin(t / 3000) * driftAmplitude); 
+  const driftRotateY = useTransform(time, (t) => Math.cos(t / 4000) * driftAmplitude); 
 
   // Combine transforms
   const rotateX = useTransform(() => mouseRotateX.get() + driftRotateX.get());
@@ -50,8 +61,8 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
                 rotateY,
                 filter: blur, 
                 opacity,
-                y: "7%", // Updated to 7% as requested
-                scale: 1 
+                y: "7%",
+                scale: 1.1 // Increased scale to prevent edge clipping during high rotation
             }} 
             className="absolute inset-0 w-full h-full flex items-center justify-center origin-center will-change-transform pointer-events-none"
         >
