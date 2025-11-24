@@ -39,7 +39,7 @@ export const Contact: React.FC = () => {
           <p className="text-neutral-400">Открыт к предложениям и новым проектам</p>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-6">
           
            {/* Telegram */}
            <a 
@@ -48,7 +48,7 @@ export const Contact: React.FC = () => {
              rel="noopener noreferrer"
              className="group"
            >
-             <div className="bg-neutral-900/40 backdrop-blur-md border border-white/10 rounded-2xl py-5 px-8 flex items-center gap-6 transition-all duration-300 hover:bg-neutral-800/60 hover:border-red-600/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] min-w-[300px]">
+             <div className="bg-neutral-900/40 backdrop-blur-md border border-white/10 rounded-2xl py-5 px-8 flex items-center space-x-6 transition-all duration-300 hover:bg-neutral-800/60 hover:border-red-600/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] min-w-[300px]">
                 <div className="w-14 h-14 bg-red-600/10 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300 border border-red-600/20">
                     <Send className="w-6 h-6 text-red-600" />
                 </div>
@@ -64,7 +64,7 @@ export const Contact: React.FC = () => {
              href="tel:+79939099309" 
              className="group"
            >
-             <div className="bg-neutral-900/40 backdrop-blur-md border border-white/10 rounded-2xl py-5 px-8 flex items-center gap-6 transition-all duration-300 hover:bg-neutral-800/60 hover:border-red-600/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] min-w-[300px]">
+             <div className="bg-neutral-900/40 backdrop-blur-md border border-white/10 rounded-2xl py-5 px-8 flex items-center space-x-6 transition-all duration-300 hover:bg-neutral-800/60 hover:border-red-600/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] min-w-[300px]">
                 <div className="w-14 h-14 bg-red-600/10 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300 border border-red-600/20">
                     <Phone className="w-6 h-6 text-red-600" />
                 </div>

@@ -5,6 +5,10 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    sourcemap: false
+    sourcemap: false,
+    target: 'es2015'
+  },
+  esbuild: {
+    target: 'es2015'
   }
 });

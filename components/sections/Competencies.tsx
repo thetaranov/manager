@@ -32,7 +32,7 @@ export const Competencies: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-10"
+        className="text-center mb-6"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
           Закрываю{' '}
@@ -50,8 +50,8 @@ export const Competencies: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Technical Column - Red Accent */}
-        <GlassCard className="h-full border-l-2 border-l-red-600 !p-6 md:!p-8" delay={0.2}>
-          <div className="flex items-center gap-3 mb-6">
+        <GlassCard className="h-full border-l-2 border-l-red-600 !p-6" delay={0.2}>
+          <div className="flex items-center space-x-3 mb-6">
             <div className="p-2 bg-red-600/10 rounded-lg border border-red-600/20">
               <Settings className="w-6 h-6 text-red-600" />
             </div>
@@ -60,7 +60,7 @@ export const Competencies: React.FC = () => {
           
           <div className="space-y-4">
             {technicalSkills.map((skill, index) => (
-              <div key={index} className="flex items-center gap-3 group">
+              <div key={index} className="flex items-center space-x-3 group">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-600/50 group-hover:bg-red-500 transition-colors shrink-0" />
                 <p className="text-neutral-300 text-base font-light group-hover:text-white transition-colors">{skill.text}</p>
               </div>
@@ -69,8 +69,8 @@ export const Competencies: React.FC = () => {
         </GlassCard>
 
         {/* Marketing Column - Red Accent */}
-        <GlassCard className="h-full border-l-2 border-l-red-600 !p-6 md:!p-8" delay={0.4}>
-          <div className="flex items-center gap-3 mb-6">
+        <GlassCard className="h-full border-l-2 border-l-red-600 !p-6" delay={0.4}>
+          <div className="flex items-center space-x-3 mb-6">
             <div className="p-2 bg-red-600/10 rounded-lg border border-red-600/20">
               <TrendingUp className="w-6 h-6 text-red-600" />
             </div>
@@ -79,7 +79,7 @@ export const Competencies: React.FC = () => {
           
           <div className="space-y-4">
             {marketingSkills.map((skill, index) => (
-              <div key={index} className="flex items-center gap-3 group">
+              <div key={index} className="flex items-center space-x-3 group">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-600/50 group-hover:bg-red-500 transition-colors shrink-0" />
                 <p className="text-neutral-300 text-base font-light group-hover:text-white transition-colors">{skill.text}</p>
               </div>

@@ -65,7 +65,7 @@ export const Offer: React.FC = () => {
           </div>
 
           <div className="mt-8 p-6 bg-red-900/10 border border-red-600/20 rounded-xl">
-             <div className="flex items-start gap-4">
+             <div className="flex items-start space-x-4">
                 <TrendingUp className="w-8 h-8 text-red-600 mt-1 shrink-0" />
                 <div>
                   <h4 className="text-lg font-bold text-white mb-2">Ориентир на финансовый результат</h4>

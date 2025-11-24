@@ -10,7 +10,7 @@ export const Experience: React.FC = () => {
       id="experience" 
       overlayOpacity="bg-black/80"
     >
-      <div className="flex flex-col md:flex-row items-center gap-12">
+      <div className="flex flex-col md:flex-row items-center space-y-12 md:space-y-0 md:space-x-12">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}

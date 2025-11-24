@@ -67,7 +67,7 @@ export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
             <span className="text-white font-bold">Ваш единый центр контроля</span> для сложных промышленных проектов — от чертежа до рынка.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <a 
               href="#contact" 
               onClick={(e) => scrollToSection(e, '#contact')}
