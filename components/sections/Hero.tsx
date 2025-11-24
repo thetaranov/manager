@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
             transition={{ duration: 0.8, delay: 1.5 }}
             className="mb-6 inline-block relative z-30"
         >
-          <span className="px-4 py-1.5 rounded-full border border-red-600/30 bg-red-600/10 text-red-500 text-xs md:text-sm font-semibold tracking-widest uppercase backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,1)]">
+          <span className="px-4 py-1.5 rounded-full border border-red-600/30 bg-red-600/10 text-red-500 text-xs md:text-sm font-semibold tracking-widest uppercase backdrop-blur-md shadow-[0_0_25px_rgba(0,0,0,1)] [text-shadow:0_1px_2px_rgba(0,0,0,0.8)]">
             Доступен для новых проектов
           </span>
         </motion.div>
@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
           initial={{ opacity: 0, y: 30 }}
           animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.7 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-[0_15px_15px_rgba(0,0,0,1)] relative z-30"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-[0_15px_15px_rgba(0,0,0,1)] [text-shadow:0_2px_4px_rgba(0,0,0,0.8)] relative z-30"
         >
           Управляю полным циклом <br className="hidden md:block" />
           <motion.span 
@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
           transition={{ duration: 0.8, delay: 1.9 }}
           className="relative z-30"
         >
-          <p className="text-lg md:text-xl text-neutral-300 max-w-2xl mb-10 font-light drop-shadow-[0_10px_10px_rgba(0,0,0,1)] mx-auto font-medium">
+          <p className="text-lg md:text-xl text-neutral-300 max-w-2xl mb-10 font-light drop-shadow-[0_10px_10px_rgba(0,0,0,1)] [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] mx-auto font-medium">
             Проектный менеджер. Кризис-менеджер. Стратег.
             <br />
             <span className="text-white font-bold drop-shadow-[0_5px_5px_rgba(0,0,0,1)]">Ваш единый центр контроля</span> для сложных промышленных проектов — от чертежа до рынка.

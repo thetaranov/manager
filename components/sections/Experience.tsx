@@ -40,8 +40,7 @@ export const Experience: React.FC = () => {
         </motion.div>
 
         <div className="w-full md:w-1/2">
-          <GlassCard className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-neutral-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <GlassCard className="relative">
             <div className="space-y-8">
               <div className="border-l-2 border-red-600 pl-6 ml-2">
                  <span className="block text-4xl font-bold text-white mb-1">100%</span>

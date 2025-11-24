@@ -50,7 +50,7 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
                 rotateY,
                 filter: blur, 
                 opacity,
-                y: "5%", // Moved up by 5%
+                y: "7%", // Updated to 7% as requested
                 scale: 1 
             }} 
             className="absolute inset-0 w-full h-full flex items-center justify-center origin-center will-change-transform pointer-events-none"
