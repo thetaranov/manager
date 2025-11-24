@@ -20,7 +20,15 @@ export const Offer: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Что я ищу для <span className="text-red-600">взаимного успеха</span>
+            Что я ищу для{' '}
+            <motion.span 
+              initial={{ color: "#ffffff" }}
+              whileInView={{ color: "#dc2626" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              взаимного успеха
+            </motion.span>
           </h2>
           <p className="text-neutral-400">
             Прозрачные условия для достижения <span className="font-bold text-white">максимальной эффективности</span>.

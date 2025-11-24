@@ -18,7 +18,17 @@ export const Contact: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Свяжитесь со мной</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            <motion.span 
+              initial={{ color: "#ffffff" }}
+              whileInView={{ color: "#dc2626" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              Свяжитесь
+            </motion.span>{' '}
+            со мной
+          </h2>
           
           <div className="mb-4">
              <h3 className="text-xl md:text-2xl text-white font-medium tracking-wide">

@@ -34,13 +34,23 @@ export const Competencies: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Закрываю все этапы проекта</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          Закрываю{' '}
+          <motion.span 
+            initial={{ color: "#ffffff" }}
+            whileInView={{ color: "#dc2626" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            все этапы проекта
+          </motion.span>
+        </h2>
         <p className="text-neutral-400 max-w-2xl mx-auto">Системный подход: от чертежа до <span className="font-bold text-white">стабильных продаж</span>.</p>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Technical Column - Red Accent */}
-        <GlassCard className="h-full border-l-4 border-l-red-600" delay={0.2}>
+        {/* Technical Column - Red Accent - Border reduced to 2px */}
+        <GlassCard className="h-full border-l-2 border-l-red-600" delay={0.2}>
           <div className="flex items-center gap-3 mb-8">
             <div className="p-3 bg-red-600/10 rounded-xl border border-red-600/20">
               <Settings className="w-8 h-8 text-red-600" />
@@ -58,8 +68,8 @@ export const Competencies: React.FC = () => {
           </div>
         </GlassCard>
 
-        {/* Marketing Column - Red Accent (Updated) */}
-        <GlassCard className="h-full border-l-4 border-l-red-600" delay={0.4}>
+        {/* Marketing Column - Red Accent - Border reduced to 2px */}
+        <GlassCard className="h-full border-l-2 border-l-red-600" delay={0.4}>
           <div className="flex items-center gap-3 mb-8">
             <div className="p-3 bg-red-600/10 rounded-xl border border-red-600/20">
               <TrendingUp className="w-8 h-8 text-red-600" />

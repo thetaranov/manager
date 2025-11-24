@@ -41,9 +41,14 @@ export const Hero: React.FC = () => {
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-[0_5px_5px_rgba(0,0,0,1)] relative z-30"
         >
           Управляю полным циклом <br className="hidden md:block" />
-          <span className="text-red-600 drop-shadow-sm">
+          <motion.span 
+            initial={{ color: "#ffffff" }}
+            animate={{ color: "#dc2626" }}
+            transition={{ duration: 1, delay: 1 }}
+            className="drop-shadow-sm"
+          >
             запуска производства
-          </span>
+          </motion.span>
         </motion.h1>
 
         <motion.div 

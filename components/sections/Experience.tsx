@@ -19,7 +19,15 @@ export const Experience: React.FC = () => {
           className="w-full md:w-1/2"
         >
            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">
-             Опыт организации производства <span className="text-red-600">с полного нуля</span>
+             Опыт организации производства{' '}
+             <motion.span 
+               initial={{ color: "#ffffff" }}
+               whileInView={{ color: "#dc2626" }}
+               viewport={{ once: true }}
+               transition={{ duration: 1 }}
+             >
+               с нуля
+             </motion.span>
            </h2>
            <div className="space-y-6">
              <p className="text-lg text-neutral-300 font-light leading-relaxed">
