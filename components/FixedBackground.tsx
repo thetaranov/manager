@@ -28,14 +28,11 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
   const mouseRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), springConfig); 
   const mouseRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig); 
 
-  // 2. Scroll Interaction (Removed as requested)
-  // const scrollTiltX = useTransform(scrollY, [0, 1500], [0, 20]); 
-
   // 3. Time Interaction (Drift)
   const driftRotateX = useTransform(time, (t) => Math.sin(t / 3000) * 3); 
   const driftRotateY = useTransform(time, (t) => Math.cos(t / 4000) * 3); 
 
-  // Combine transforms (Removed scrollTiltX)
+  // Combine transforms
   const rotateX = useTransform(() => mouseRotateX.get() + driftRotateX.get());
   const rotateY = useTransform(() => mouseRotateY.get() + driftRotateY.get());
   
@@ -52,11 +49,11 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
                 rotateX, 
                 rotateY,
                 filter: blur, 
-                opacity 
+                opacity,
+                y: "5%", // Moved up by 5%
+                scale: 1 
             }} 
-            // Scale kept at 3.7
-            // Set vertical translate to 135% to align top edge with the top of the viewport/menu
-            className="absolute inset-0 w-full h-full flex items-center justify-center origin-center scale-[3.7] translate-y-[135%] will-change-transform pointer-events-none"
+            className="absolute inset-0 w-full h-full flex items-center justify-center origin-center will-change-transform pointer-events-none"
         >
              <video
                 ref={videoRef}
