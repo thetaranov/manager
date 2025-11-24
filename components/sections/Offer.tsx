@@ -66,10 +66,10 @@ export const Offer: React.FC = () => {
 
           <div className="mt-10 p-6 bg-red-900/10 border border-red-600/20 rounded-xl">
              <div className="flex items-start gap-4">
-                <TrendingUp className="w-6 h-6 text-red-600 mt-1 shrink-0" />
+                <TrendingUp className="w-8 h-8 text-red-600 mt-1 shrink-0" />
                 <div>
-                  <h4 className="text-lg font-bold text-white mb-2">Ориентир на финансовый результат</h4>
-                  <p className="text-neutral-300 text-sm">
+                  <h4 className="text-xl font-bold text-white mb-2">Ориентир на финансовый результат</h4>
+                  <p className="text-neutral-300 text-lg leading-relaxed">
                     Я зарабатываю на том, что помогаю вам зарабатывать больше. Моя задача — выстроить процессы так, чтобы минимизировать издержки и увеличить маржинальность вашего продукта.
                   </p>
                 </div>

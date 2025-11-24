@@ -55,8 +55,8 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
                 opacity 
             }} 
             // Scale kept at 3.7
-            // Set vertical translate to 70% (40% + 30%)
-            className="absolute inset-0 w-full h-full flex items-center justify-center origin-center scale-[3.7] translate-y-[70%] will-change-transform pointer-events-none"
+            // Set vertical translate to 135% to align top edge with the top of the viewport/menu
+            className="absolute inset-0 w-full h-full flex items-center justify-center origin-center scale-[3.7] translate-y-[135%] will-change-transform pointer-events-none"
         >
              <video
                 ref={videoRef}
@@ -68,6 +68,9 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
                 playsInline
                 onCanPlayThrough={onReady}
              />
+
+            {/* Video-specific Vignette */}
+            <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.8)_100%)]" />
 
             {/* Texture: Pixels - Opacity 20% */}
             <div 

@@ -42,7 +42,7 @@ function App() {
         
         {/* z-20 ensures content is above the background (z-0) but below Navbar (z-50) */}
         <main className="relative z-20 flex flex-col">
-          <Hero />
+          <Hero isReady={!isLoading} />
           <Competencies />
           <Offer />
           <Experience />
