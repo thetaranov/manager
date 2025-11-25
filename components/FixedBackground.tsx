@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, useTime } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useTime, useMotionValue } from 'framer-motion';
 import { useMouse } from '../context/MouseContext';
 
 interface FixedBackgroundProps {
@@ -16,6 +16,10 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Gyroscope Motion Values
+  const gyroX = useMotionValue(0); // Beta (front/back tilt)
+  const gyroY = useMotionValue(0); // Gamma (left/right tilt)
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -29,23 +33,101 @@ export const FixedBackground: React.FC<FixedBackgroundProps> = ({ onReady }) => 
     }
   }, []);
 
-  // 1. Mouse Interaction
+  // Initialize Gyroscope Listener
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      // Gamma: Left/Right tilt (-90 to 90). Map to rotateY.
+      // Beta: Front/Back tilt (-180 to 180). Map to rotateX.
+      
+      const gamma = e.gamma || 0;
+      const beta = e.beta || 0;
+
+      // Normalize and Clamp values for subtle effect
+      // Gamma (Left/Right): Direct mapping, max +/- 20 deg
+      const targetY = Math.max(-20, Math.min(20, gamma));
+      
+      // Beta (Front/Back): Offset by ~45 deg (holding position), max +/- 20 deg
+      // Assuming user holds phone at ~45 degrees, so 45 is "neutral"
+      const targetX = Math.max(-20, Math.min(20, beta - 45));
+
+      gyroX.set(targetX);
+      gyroY.set(targetY);
+    };
+
+    const requestAccess = async () => {
+      if (typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
+        try {
+          const permissionState = await (DeviceOrientationEvent as any).requestPermission();
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', handleOrientation);
+          }
+        } catch (error) {
+          console.error('Gyroscope permission failed', error);
+        }
+      } else {
+        // Non-iOS 13+ devices
+        window.addEventListener('deviceorientation', handleOrientation);
+      }
+    };
+
+    // iOS requires a user gesture to request permission.
+    // We attach a one-time click listener to the window to trigger this.
+    const handleInteraction = () => {
+      requestAccess();
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+    };
+
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
+    
+    // Attempt immediate connection for non-iOS devices
+    if (!((DeviceOrientationEvent as any).requestPermission)) {
+         window.addEventListener('deviceorientation', handleOrientation);
+    }
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientation);
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+    };
+  }, [isMobile, gyroX, gyroY]);
+
+
+  // 1. Physics Configuration
   const springConfig = { damping: 30, stiffness: 50 }; 
   
-  // Reduced dynamics by 2x (was 12, now 6 degrees)
+  // 2. Mouse Transforms (Desktop)
   const mouseRotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), springConfig); 
   const mouseRotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), springConfig); 
 
-  // 3. Time Interaction (Drift)
-  // Significantly increased drift for mobile since there is no mouse interaction
+  // 3. Gyro Transforms (Mobile)
+  // Invert X because tilting phone forward (positive beta) should tilt plane top-away (negative rotateX) for natural feel
+  const gyroRotateXSpring = useSpring(useTransform(gyroX, (val) => -val / 1.5), springConfig);
+  const gyroRotateYSpring = useSpring(useTransform(gyroY, (val) => val / 1.5), springConfig);
+
+  // 4. Time Interaction (Drift)
   const driftAmplitude = isMobile ? 12 : 3; 
   
   const driftRotateX = useTransform(time, (t) => Math.sin(t / 3000) * driftAmplitude); 
   const driftRotateY = useTransform(time, (t) => Math.cos(t / 4000) * driftAmplitude); 
 
-  // Combine transforms
-  const rotateX = useTransform(() => mouseRotateX.get() + driftRotateX.get());
-  const rotateY = useTransform(() => mouseRotateY.get() + driftRotateY.get());
+  // 5. Combine transforms based on device type
+  const rotateX = useTransform(() => {
+    const drift = driftRotateX.get();
+    return isMobile 
+        ? gyroRotateXSpring.get() + drift 
+        : mouseRotateX.get() + drift;
+  });
+
+  const rotateY = useTransform(() => {
+    const drift = driftRotateY.get();
+    return isMobile 
+        ? gyroRotateYSpring.get() + drift 
+        : mouseRotateY.get() + drift;
+  });
   
   // Visual effects
   const blur = useTransform(scrollY, [0, 600], ["blur(0px)", "blur(12px)"]);
